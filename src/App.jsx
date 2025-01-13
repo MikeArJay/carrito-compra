@@ -1,14 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from 'react';
 import './App.css'
+import ListaProductos from './ListaProductos';
+import { CartProvider } from './CartContext';
+import Carrito from './Carrito';
+
 
 function App() {
-  const [count, setCount] = useState(0)
-// catalogo en app
+  const [showCarrito, setShowCarrito] = useState(false)
+
+  const handleClick = () => {
+    setShowCarrito(!showCarrito);
+  }
+
+
   return (
     <>
-
+      <CartProvider>
+        <ListaProductos />
+        <button onClick={handleClick}>Ver carrito</button>
+        {showCarrito &&
+          <Carrito />}
+      </CartProvider>
     </>
   )
 }
